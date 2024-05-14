@@ -1,13 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import LandingPage from "./routes/LandingPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./index.css";
+import NavigationBar from "./routes/NavigationBar";
+import LandingPage from "./routes/LandingPage";
 
 const router = createBrowserRouter([
 	{
 		path: "/fake-store",
-		element: <LandingPage />,
+		element: <NavigationBar />,
+		children: [
+			{
+				path: "home?",
+				element: <LandingPage />,
+			},
+		],
 	},
 ]);
 
