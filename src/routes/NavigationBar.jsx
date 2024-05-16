@@ -4,7 +4,7 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Outlet, Link } from "react-router-dom";
 
 const NavigationBar = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	const openNav = () => {
 		setIsOpen(!isOpen);
@@ -23,7 +23,7 @@ const NavigationBar = () => {
 							<Link>Categ 3</Link>
 							<RiShoppingCart2Line size={"1.4em"} />
 						</div>
-						<div className="md:hidden ">
+						<div className="z-50 md:hidden">
 							<button className="flex items-center">
 								{isOpen ? (
 									<IoMdClose className="p1" onClick={openNav} />
@@ -34,6 +34,7 @@ const NavigationBar = () => {
 						</div>
 					</nav>
 					<div className={`container ${isOpen ? "block" : "hidden"}`}>
+						<div className="fixed top-0 left-0 bottom-0 w-full bg-dark-blue opacity-35"></div>
 						<nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white overflow-y-auto">
 							<Link>Home</Link>
 							<Link>Categ 1</Link>
