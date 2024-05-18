@@ -4,7 +4,7 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Outlet, Link } from "react-router-dom";
 
 const NavigationBar = () => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const openNav = () => {
 		setIsOpen(!isOpen);
