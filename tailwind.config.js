@@ -13,6 +13,7 @@ export default {
 				"dark-blue": "#293241",
 				"dirty-white": "#F8F8F8",
 				orange: "#EE6C4D",
+				"orange-hover": "#da4a28",
 			},
 		},
 	},

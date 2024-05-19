@@ -8,11 +8,11 @@ const Products = (props) => {
 				<img
 					src={props.UrlImage}
 					alt={props.name}
-					className="rounded-t-lg max-w-[60%] h-auto mx-auto"
+					className="rounded-t-lg max-w-[60%] mx-auto md:h-52 md:object-scale-down"
 				/>
 			</div>
 			<div className="flex justify-between items-start px-2 pt-5">
-				<div className="p-2 mb-4 flex-grow">
+				<div className="p-2 flex-grow h-28 lg:h-36 xl:h-28">
 					<h3 className="text-lg">{props.name}</h3>
 					<div className="flex gap-2 items-end mt-2">
 						<h3 className="text-2xl font-bold text-orange">{`$${props.price}`}</h3>
@@ -23,7 +23,7 @@ const Products = (props) => {
 				</div>
 			</div>
 			<div className="flex justify-between items-center px-2 pb-2 text-white">
-				<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1">
+				<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover">
 					<RiShoppingCart2Line size={"1.4em"} />
 					Add to Cart
 				</button>

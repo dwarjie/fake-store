@@ -6,8 +6,11 @@
 
 - [x] Initial Setup
 - [x] Deployment to Github Pages
-- [ ] Create Landing Page
+- [x] Create Landing Page
+- [x] Style Side Nav in Mobile
 - [x] Fetch data using API from fake-store
+- [ ] Create Shop Page
+- [ ] Filter by Category
 - [ ] Add to Cart Functionality
 
 ### Tools/Language

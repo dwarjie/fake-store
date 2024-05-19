@@ -12,3 +12,13 @@ html {
 	width: 90%;
 	margin: auto;
 }
+
+.nav-item-hover {
+	transition: all ease-in-out;
+	transition-duration: 0.3s;
+}
+
+.nav-item-hover:hover {
+	font-size: 18px;
+	font-weight: bold;
+}
