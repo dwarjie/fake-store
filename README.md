@@ -7,11 +7,13 @@
 - [x] Initial Setup
 - [x] Deployment to Github Pages
 - [ ] Create Landing Page
-- [ ] Fetch data using API from fake-store
-- [ ] Create Each Category Pages
+- [x] Fetch data using API from fake-store
 - [ ] Add to Cart Functionality
 
 ### Tools/Language
 
 - ReactJS
+- Tailwind CSS
+- react-router-dom
 - fake-api (for fake data)
+- prop-types (for prop-types checking)

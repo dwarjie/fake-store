@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import NavigationBar from "./routes/NavigationBar";
 import LandingPage from "./routes/LandingPage";
+import Error from "./components/Error";
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
 			{
 				path: "home?",
 				element: <LandingPage />,
+				errorElement: <Error />,
 			},
 		],
 	},

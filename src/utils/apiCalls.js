@@ -3,9 +3,12 @@ const apiUrl = "https://fakestoreapi.com";
 const fetchCall = async (url) => {
 	const response = await fetch(`${apiUrl}${url}`)
 		.then((data) => {
+			// throw new Error(`HTTP error: `);
 			return data.json();
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => {
+			throw new Error(`HTTP error: ${err}`);
+		});
 
 	return response;
 };
