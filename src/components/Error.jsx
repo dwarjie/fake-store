@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 
 const Error = (props) => {
 	return (
-		<div className="z-50 w-screen h-screen bg-white text-black">
-			<h1>Error</h1>
+		<div className="h-screen flex flex-col justify-center items-center gap-4">
+			<h2 className="font-medium text-lg text-red-500">
+				Oh no! Something went Wrong.
+			</h2>
 			<p>{props.message}</p>
 		</div>
 	);
@@ -14,7 +16,7 @@ Error.propTypes = {
 };
 
 Error.defaultProps = {
-	message: "Error: Something Went Wrong",
+	message: "Contact me on my LinkedIn and please give me a job 🥺",
 };
 
 export default Error;
