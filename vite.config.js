@@ -5,4 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
 	base: "/fake-store",
 	plugins: [react()],
+	test: {
+		globals: true,
+		environment: "jsdom",
+		setupFiles: "./src/setupTest.js",
+		pool: "forks",
+	},
 });

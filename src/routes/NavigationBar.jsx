@@ -17,7 +17,7 @@ const NavigationBar = () => {
 					<nav className="py-3 flex justify-between items-center text-white">
 						<h1 className="font-bold text-2xl">SHOPII</h1>
 						<div className="hidden md:flex gap-6">
-							<Link>Home</Link>
+							<Link to={"/fake-store"}>Home</Link>
 							<Link>Shop</Link>
 							<Link>Contact Us</Link>
 							<Link>Services</Link>
@@ -45,7 +45,9 @@ const NavigationBar = () => {
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
 							</div>
 							<div className="flex flex-col gap-5">
-								<Link className="nav-item-hover">Home</Link>
+								<Link to={"/fake-store"} className="nav-item-hover">
+									Home
+								</Link>
 								<Link className="nav-item-hover">Shop</Link>
 								<Link className="nav-item-hover">Contact Us</Link>
 								<Link className="nav-item-hover">Services</Link>

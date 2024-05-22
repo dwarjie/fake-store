@@ -20,3 +20,5 @@
 - react-router-dom
 - fake-api (for fake data)
 - prop-types (for prop-types checking)
+- vitest (for unit testing)
+- react-testing-library (for ui testing)
