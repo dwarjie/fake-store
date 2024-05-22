@@ -2,7 +2,7 @@
 
 import { beforeAll, describe, expect, expectTypeOf, it } from "vitest";
 
-const TIMEOUT = 10000;
+const TIMEOUT = 30000;
 const URL = "https://fakestoreapi.com/products?limit=4";
 
 describe("Request Products from fake-store API", () => {
