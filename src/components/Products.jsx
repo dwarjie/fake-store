@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 
 const Products = (props) => {
 	return (
-		<div className="max-w-full bg-white flex flex-col rounded-lg border border-gray-100 shadow-md">
+		<div
+			className="max-w-full bg-white flex flex-col rounded-lg border border-gray-100 shadow-md"
+			data-testid="product-element"
+		>
 			<div className="p-4">
 				<img
 					src={props.UrlImage}

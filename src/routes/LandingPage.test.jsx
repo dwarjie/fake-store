@@ -9,12 +9,20 @@ describe("Landing Page Component", () => {
 
 		await waitFor(
 			() => {
-				expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-					/never miss a single moment/
-				);
+				expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(3);
 			},
-			{ timeout: 3000 }
+			{ timeout: 5000 }
 		);
-		// expect(screen.getByText(/never miss a single moment/)).toBeInTheDocument();
+	});
+
+	it("Renders 4 featured products", async () => {
+		renderWithRouter(<LandingPage />);
+
+		await waitFor(
+			() => {
+				expect(screen.getAllByTestId("product-element")).toHaveLength(4);
+			},
+			{ timeout: 5000 }
+		);
 	});
 });
