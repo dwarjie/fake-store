@@ -12,7 +12,7 @@ const NavigationBar = () => {
 
 	return (
 		<>
-			<div className="w-full bg-dark-blue font-poppins">
+			<div className="w-full bg-dark-blue font-poppins shadow-md shadow-dark-blue">
 				<div className="container">
 					<nav className="py-3 flex justify-between items-center text-white">
 						<h1 className="font-bold text-2xl">SHOPII</h1>
@@ -63,7 +63,7 @@ const NavigationBar = () => {
 					</div>
 				</div>
 			</div>
-			<div className="h-auto w-full">
+			<div className="h-screen w-screen">
 				<Outlet />
 			</div>
 		</>

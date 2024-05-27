@@ -8,6 +8,7 @@ export default {
 		extend: {
 			backgroundImage: {
 				"landing-image": "url('/src/assets/landing-bg.png')",
+				"shop-hero": "url('/src/assets/shop-hero.jpg')",
 			},
 			colors: {
 				"dark-blue": "#293241",
