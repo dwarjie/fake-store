@@ -12,13 +12,13 @@ const NavigationBar = () => {
 
 	return (
 		<>
-			<div className="w-full bg-dark-blue font-poppins shadow-md shadow-dark-blue">
+			<div className="w-full bg-dark-blue font-poppins">
 				<div className="container">
 					<nav className="py-3 flex justify-between items-center text-white">
 						<h1 className="font-bold text-2xl">SHOPII</h1>
 						<div className="hidden md:flex gap-6">
 							<Link to={"/fake-store"}>Home</Link>
-							<Link>Shop</Link>
+							<Link to={"/fake-store/shop"}>Shop</Link>
 							<Link>Contact Us</Link>
 							<Link>Services</Link>
 							<RiShoppingCart2Line size={"1.4em"} />
@@ -48,7 +48,7 @@ const NavigationBar = () => {
 								<Link to={"/fake-store"} className="nav-item-hover">
 									Home
 								</Link>
-								<Link className="nav-item-hover">Shop</Link>
+								<Link to={"/fake-store/shop"}>Shop</Link>
 								<Link className="nav-item-hover">Contact Us</Link>
 								<Link className="nav-item-hover">Services</Link>
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
@@ -63,7 +63,7 @@ const NavigationBar = () => {
 					</div>
 				</div>
 			</div>
-			<div className="h-screen w-screen">
+			<div className="h-screen w-auto">
 				<Outlet />
 			</div>
 		</>

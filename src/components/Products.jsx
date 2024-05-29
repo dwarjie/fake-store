@@ -15,13 +15,13 @@ const Products = (props) => {
 				/>
 			</div>
 			<div className="flex justify-between items-start px-2 pt-5">
-				<div className="p-2 flex-grow h-28 lg:h-36 xl:h-28">
-					<h3 className="text-lg">{props.name}</h3>
+				<div className="p-2 flex-grow h-28 lg:h-36">
+					<h3 className="text-lg lg:text-base">{props.name}</h3>
 					<div className="flex gap-2 items-end mt-2">
 						<h3 className="text-2xl font-bold text-orange">{`$${props.price}`}</h3>
-						<p className="text-base text-dark-blue line-through">{`$${
-							props.price - 10
-						}`}</p>
+						<p className="text-base text-dark-blue line-through">{`$${Math.round(
+							props.price - 3
+						)}`}</p>
 					</div>
 				</div>
 			</div>
