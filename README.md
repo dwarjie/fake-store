@@ -9,7 +9,7 @@
 - [x] Create Landing Page
 - [x] Style Side Nav in Mobile
 - [x] Fetch data using API from fake-store
-- [ ] Create Shop Page
+- [x] Create Shop Page
 - [ ] Filter by Category
 - [ ] Add to Cart Functionality
 
