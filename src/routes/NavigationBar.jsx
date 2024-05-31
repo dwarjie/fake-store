@@ -10,6 +10,10 @@ const NavigationBar = () => {
 		setIsOpen(!isOpen);
 	};
 
+	const resetNav = () => {
+		if (isOpen) setIsOpen(!isOpen);
+	};
+
 	return (
 		<>
 			<div className="w-full bg-dark-blue font-poppins">
@@ -45,15 +49,25 @@ const NavigationBar = () => {
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
 							</div>
 							<div className="flex flex-col gap-5">
-								<Link to={"/fake-store"} className="nav-item-hover">
+								<Link
+									to={"/fake-store"}
+									className="nav-item-hover"
+									onClick={resetNav}
+								>
 									Home
 								</Link>
-								<Link to={"/fake-store/shop"}>Shop</Link>
+								<Link
+									to={"/fake-store/shop"}
+									className="nav-item-hover"
+									onClick={resetNav}
+								>
+									Shop
+								</Link>
 								<Link className="nav-item-hover">Contact Us</Link>
 								<Link className="nav-item-hover">Services</Link>
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
 							</div>
-							<div>
+							<div className="mt-auto">
 								<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white">
 									<RiShoppingCart2Line size={"1.4em"} />
 									View Cart
