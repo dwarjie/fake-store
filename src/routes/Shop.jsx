@@ -20,16 +20,30 @@ const Shop = () => {
 	const [error, setError] = useState("");
 
 	useEffect(() => {
-		getProducts();
+		getAllProducts();
 	}, []);
 
-	const getProducts = async () => {
+	const getAllProducts = async () => {
 		try {
 			const [mens, womens] = await Promise.all([
 				fetchCall("/products/category/men's clothing"),
 				fetchCall("/products/category/women's clothing"),
 			]);
 			setProducts([...mens, ...womens]);
+		} catch (err) {
+			setError(err.message);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const getProductByFilter = async (category) => {
+		try {
+			setLoading(true);
+			const filteredProducts = await fetchCall(
+				`/products/category/${category}`
+			);
+			setProducts(filteredProducts);
 		} catch (err) {
 			setError(err.message);
 		} finally {
@@ -49,6 +63,16 @@ const Shop = () => {
 
 	const resetFilter = () => {
 		setFilter(FILTER_VALUE);
+		setLoading(true);
+		getAllProducts();
+	};
+
+	// TODO:
+	// - Once more filter is supported, refactor this code
+	const applyFilter = () => {
+		if (!filter.filter_category) return;
+
+		getProductByFilter(filter.filter_category);
 	};
 
 	if (loading) return <Loading />;
@@ -135,7 +159,10 @@ const Shop = () => {
 						>
 							RESET
 						</button>
-						<button className="w-full px-3 py-2.5 bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white">
+						<button
+							className="w-full px-3 py-2.5 bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white"
+							onClick={applyFilter}
+						>
 							APPLY
 						</button>
 					</div>
