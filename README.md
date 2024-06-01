@@ -10,8 +10,11 @@
 - [x] Style Side Nav in Mobile
 - [x] Fetch data using API from fake-store
 - [x] Create Shop Page
-- [ ] Filter by Category
+- [x] Filter by Category
+- [x] Search products by name
 - [ ] Add to Cart Functionality
+- [ ] Add some animations?
+- [ ] Hide side nav and filter when clicked outside?
 
 ### Tools/Language
 

@@ -81,6 +81,8 @@ const Shop = () => {
 		getProductByFilter(filter.filter_category);
 	};
 
+	// TODO:
+	// - Move this to a util file
 	const searchProduct = () => {
 		if (searchState) {
 			setLoading(true);
