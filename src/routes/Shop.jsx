@@ -1,4 +1,4 @@
-import { IoIosSearch } from "react-icons/io";
+import { IoIosSearch, IoMdClose } from "react-icons/io";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { MdOutlineFilterAlt, MdOutlineFilterAltOff } from "react-icons/md";
 import { useEffect, useState } from "react";
@@ -14,6 +14,8 @@ const FILTER_VALUE = {
 
 const Shop = () => {
 	const [filter, setFilter] = useState(FILTER_VALUE);
+	const [searchState, setSearchState] = useState(false);
+	const [search, setSearch] = useState("");
 	const [isFilter, setIsFilter] = useState(false);
 	const [products, setProducts] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -61,6 +63,10 @@ const Shop = () => {
 		});
 	};
 
+	const handleSearchInput = (e) => {
+		setSearch(e.target.value);
+	};
+
 	const resetFilter = () => {
 		setFilter(FILTER_VALUE);
 		setLoading(true);
@@ -75,6 +81,36 @@ const Shop = () => {
 		getProductByFilter(filter.filter_category);
 	};
 
+	const searchProduct = () => {
+		if (searchState) {
+			setLoading(true);
+			setSearchState(false);
+			setSearch("");
+			getAllProducts();
+
+			return;
+		}
+
+		if (!search) return;
+
+		const regexSearch = new RegExp(`${search}`, "gi");
+		let searchResult = products.filter(
+			(item) => item.title.search(regexSearch) >= 0
+		);
+
+		if (searchResult.length > 0) {
+			try {
+				setLoading(true);
+				setSearchState(true);
+				setProducts(searchResult);
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		}
+	};
+
 	if (loading) return <Loading />;
 
 	if (error) return <Error />;
@@ -87,10 +123,19 @@ const Shop = () => {
 						type="search"
 						name="search"
 						placeholder="Search"
+						value={search}
+						onChange={handleSearchInput}
 						className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
 					/>
-					<button className="absolute right-0 top-0 mt-2 mr-3">
-						<IoIosSearch size={"1.5em"} opacity={0.5} />
+					<button
+						className="absolute right-0 top-0 bg-orange py-2 px-3 rounded-r-full hover:bg-orange-hover"
+						onClick={searchProduct}
+					>
+						{searchState ? (
+							<IoMdClose size={"1.5em"} color="white" />
+						) : (
+							<IoIosSearch size={"1.5em"} color="white" />
+						)}
 					</button>
 				</div>
 				<button
