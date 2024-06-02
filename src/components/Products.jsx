@@ -1,7 +1,40 @@
 import { RiShoppingCart2Line } from "react-icons/ri";
 import PropTypes from "prop-types";
+import { addToCart } from "../utils/apiCalls";
 
 const Products = (props) => {
+	const date = new Date().toJSON();
+	const buyProduct = async (id) => {
+		const values = {
+			userId: 30,
+			date: date.slice(0, 10),
+			products: [
+				{
+					productId: id,
+					quantity: 1,
+				},
+			],
+		};
+
+		try {
+			const response = await addToCart(values);
+			console.log(response);
+		} catch (err) {
+			throw new Error(err);
+		}
+	};
+	// const getProducts = async () => {
+	// 	try {
+	// 		const response = await fetchCall("/products?limit=4");
+	// 		setProducts(response);
+	// 		console.log(response);
+	// 	} catch (err) {
+	// 		setError(err.message);
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// };
+
 	return (
 		<div
 			className="max-w-full bg-white flex flex-col rounded-lg border border-gray-100 shadow-md"
@@ -26,7 +59,10 @@ const Products = (props) => {
 				</div>
 			</div>
 			<div className="flex justify-between items-center px-2 pb-2 text-white">
-				<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover">
+				<button
+					className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
+					onClick={() => buyProduct(props.id)}
+				>
 					<RiShoppingCart2Line size={"1.4em"} />
 					Add to Cart
 				</button>

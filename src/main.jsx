@@ -6,6 +6,7 @@ import NavigationBar from "./routes/NavigationBar";
 import LandingPage from "./routes/LandingPage";
 import Error from "./components/Error";
 import Shop from "./routes/Shop";
+import Cart from "./routes/Cart";
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
 				element: <Shop />,
 				errorElement: <Error />,
 			},
+			{
+				path: "cart",
+				element: <Cart />,
+				errorElement: <Error />
+			}
 		],
 	},
 ]);

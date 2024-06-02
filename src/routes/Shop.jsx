@@ -1,5 +1,4 @@
 import { IoIosSearch, IoMdClose } from "react-icons/io";
-import { RiShoppingCart2Line } from "react-icons/ri";
 import { MdOutlineFilterAlt, MdOutlineFilterAltOff } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { fetchCall } from "../utils/apiCalls";
@@ -110,6 +109,10 @@ const Shop = () => {
 			} finally {
 				setLoading(false);
 			}
+		} else {
+			// I will use alert for now. Maybe? improve this later on
+			window.alert(`${search} does not exist!`)
+			setSearch("")
 		}
 	};
 
@@ -211,12 +214,6 @@ const Shop = () => {
 							onClick={applyFilter}
 						>
 							APPLY
-						</button>
-					</div>
-					<div className="mt-auto">
-						<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white">
-							<RiShoppingCart2Line size={"1.4em"} />
-							View Cart
 						</button>
 					</div>
 				</nav>
