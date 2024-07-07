@@ -6,7 +6,7 @@ import NavigationBar from "./routes/NavigationBar";
 import LandingPage from "./routes/LandingPage";
 import Error from "./components/Error";
 import Shop from "./routes/Shop";
-import Cart from "./routes/Cart";
+import PersonalCart from "./routes/PersonalCart";
 
 const router = createBrowserRouter([
 	{
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "cart",
-				element: <Cart />,
+				element: <PersonalCart />,
 				errorElement: <Error />
 			}
 		],

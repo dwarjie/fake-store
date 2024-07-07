@@ -4,36 +4,24 @@ import { addToCart } from "../utils/apiCalls";
 
 const Products = (props) => {
 	const date = new Date().toJSON();
-	const buyProduct = async (id) => {
+
+	const buyProduct = (id, urlImage, name, price) => {
 		const values = {
-			userId: 30,
+			id: id,
+			urlImage: urlImage,
+			name: name,
+			price: price,
+			quantity: 1,
 			date: date.slice(0, 10),
-			products: [
-				{
-					productId: id,
-					quantity: 1,
-				},
-			],
 		};
 
 		try {
-			const response = await addToCart(values);
+			const response = addToCart(values);
 			console.log(response);
 		} catch (err) {
 			throw new Error(err);
 		}
 	};
-	// const getProducts = async () => {
-	// 	try {
-	// 		const response = await fetchCall("/products?limit=4");
-	// 		setProducts(response);
-	// 		console.log(response);
-	// 	} catch (err) {
-	// 		setError(err.message);
-	// 	} finally {
-	// 		setLoading(false);
-	// 	}
-	// };
 
 	return (
 		<div
@@ -61,7 +49,9 @@ const Products = (props) => {
 			<div className="flex justify-between items-center px-2 pb-2 text-white">
 				<button
 					className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
-					onClick={() => buyProduct(props.id)}
+					onClick={() =>
+						buyProduct(props.id, props.UrlImage, props.name, props.price)
+					}
 				>
 					<RiShoppingCart2Line size={"1.4em"} />
 					Add to Cart
