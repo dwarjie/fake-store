@@ -1,7 +1,7 @@
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import { MdOutlineFilterAlt, MdOutlineFilterAltOff } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { fetchCall } from "../utils/apiCalls";
+import { addToCart, fetchCall } from "../utils/apiCalls";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
@@ -17,12 +17,29 @@ const Shop = () => {
 	const [search, setSearch] = useState("");
 	const [isFilter, setIsFilter] = useState(false);
 	const [products, setProducts] = useState(null);
+	const [cart, setCart] = useState([])
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
-
+	const date = new Date().toJSON()
+	
 	useEffect(() => {
 		getAllProducts();
 	}, []);
+
+	useEffect(() => {
+		try {
+			setLoading(true)
+			addToCart(cart)
+		} catch(err) {
+			setError(err.message)
+		} finally {
+			setLoading(false)
+		}
+	}, [cart])
+	
+	const addProductToCart = (id, urlImage, name, price) => {
+		setCart([...cart, {id, urlImage, name, price, quantity: 1, date: date.slice(0, 10)}])
+	};
 
 	const getAllProducts = async () => {
 		try {
@@ -228,6 +245,7 @@ const Shop = () => {
 								name={product.title}
 								UrlImage={product.image}
 								price={product.price}
+								addToCart={addProductToCart}
 							/>
 						))}
 				</div>
