@@ -1,7 +1,7 @@
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import { MdOutlineFilterAlt, MdOutlineFilterAltOff } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { addToCart, fetchCall } from "../utils/apiCalls";
+import { addToCart, fetchCall, getAllCart } from "../utils/apiCalls";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
@@ -17,7 +17,7 @@ const Shop = () => {
 	const [search, setSearch] = useState("");
 	const [isFilter, setIsFilter] = useState(false);
 	const [products, setProducts] = useState(null);
-	const [cart, setCart] = useState([])
+	const [cart, setCart] = useState(getAllCart())
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
 	const date = new Date().toJSON()
@@ -28,13 +28,10 @@ const Shop = () => {
 
 	useEffect(() => {
 		try {
-			setLoading(true)
 			addToCart(cart)
 		} catch(err) {
 			setError(err.message)
-		} finally {
-			setLoading(false)
-		}
+		} 
 	}, [cart])
 	
 	const addProductToCart = (id, urlImage, name, price) => {

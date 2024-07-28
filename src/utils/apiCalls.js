@@ -17,9 +17,6 @@ const fetchCall = async (url) => {
 };
 
 const addToCart = (products) => {
-  if (!localStorage.getItem(Cart.STORAGE_NAME))
-    return localStorage.setItem(Cart.STORAGE_NAME, JSON.stringify(products));
-
   try {
     return localStorage.setItem(Cart.STORAGE_NAME, JSON.stringify(products));
   } catch (err) {
@@ -28,14 +25,14 @@ const addToCart = (products) => {
 };
 
 const getAllCart = () => {
-  if (!localStorage.getItem(Cart.STORAGE_NAME))
-    localStorage.setItem(Cart.STORAGE_NAME, JSON.stringify(Cart.personal_cart));
-
   try {
-    Cart.personal_cart = localStorage.getItem(Cart.STORAGE_NAME);
-    console.log(Cart.personal_cart);
-
-    return true;
+    const cartStorage = JSON.parse(localStorage.getItem(Cart.STORAGE_NAME));
+    if (cartStorage) {
+      return cartStorage;
+    } else {
+      localStorage.setItem(Cart.STORAGE_NAME, []);
+      return false;
+    }
   } catch (err) {
     throw new Error(err.message);
   }
