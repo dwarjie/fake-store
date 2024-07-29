@@ -18,7 +18,6 @@ const LandingPage = () => {
 		try {
 			const response = await fetchCall("/products?limit=4");
 			setProducts(response);
-			// console.log(response);
 		} catch (err) {
 			setError(err.message);
 		} finally {

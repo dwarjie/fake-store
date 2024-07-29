@@ -4,41 +4,57 @@
 
 body,
 html {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-	width: 90%;
-	margin: auto;
+  width: 90%;
+  margin: auto;
 }
 
 .nav-item-hover {
-	transition: all ease-in-out;
-	transition-duration: 0.3s;
+  transition: all ease-in-out;
+  transition-duration: 0.3s;
 }
 
 .nav-item-hover:hover {
-	font-size: 18px;
-	font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* reference: https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb */
 /* clears the ‘X’ from Internet Explorer */
 input[type="search"]::-ms-clear {
-	display: none;
-	width: 0;
-	height: 0;
+  display: none;
+  width: 0;
+  height: 0;
 }
 input[type="search"]::-ms-reveal {
-	display: none;
-	width: 0;
-	height: 0;
+  display: none;
+  width: 0;
+  height: 0;
 }
 /* clears the ‘X’ from Chrome */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
-	display: none;
+  display: none;
+}
+
+/* reference: https://www.creative-tim.com/twcomponents/component/number-input-counter */
+/* input number counter */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-number-input input:focus {
+  outline: none !important;
+}
+
+.custom-number-input button:focus {
+  outline: none !important;
 }

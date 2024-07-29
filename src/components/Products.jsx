@@ -19,9 +19,6 @@ const Products = ({ id, UrlImage, name, price, addToCart}) => {
 					<h3 className="text-lg lg:text-base">{name}</h3>
 					<div className="flex gap-2 items-end mt-2">
 						<h3 className="text-2xl font-bold text-orange">{`$${price}`}</h3>
-						<p className="text-base text-dark-blue line-through">{`$${Math.round(
-							price - 3
-						)}`}</p>
 					</div>
 				</div>
 			</div>

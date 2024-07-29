@@ -3,7 +3,6 @@ import { getAllCart } from "../utils/apiCalls";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import CartProducts from "../components/CartProducts";
-import { Cart } from "../utils/data";
 
 const PersonalCart = () => {
 	const [cart, setCart] = useState([]);
@@ -17,10 +16,7 @@ const PersonalCart = () => {
 	const getCart = () => {
 		try {
 			const response = getAllCart();
-			if (response) {
-				setCart(Cart.personal_cart.cart);
-				console.log(cart);
-			}
+			setCart(response)
 		} catch (err) {
 			setError(err.message);
 		} finally {
@@ -38,7 +34,7 @@ const PersonalCart = () => {
 				<div className="flex flex-col gap-2">
 					<h3 className="font-bold text-2xl text-dark-blue">Shopping Cart</h3>
 					<hr className="h-px mt-1 bg-gray-200 border-0" />
-					<div className="flex flex-col">
+					<div className="grid grid-cols-1 gap-5">
 						{cart &&
 							cart.map((item, index) => (
 								<CartProducts
