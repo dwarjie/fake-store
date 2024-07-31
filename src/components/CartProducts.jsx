@@ -30,7 +30,7 @@ const CartProducts = (props) => {
 						<button className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none">
 							<span>-</span>
 						</button>
-						<input type="number" className="text-dark-blue text-center outline-none w-full font-semibold text-base flex items-center" name="custom-input-number"/>
+						<input type="number" className="text-dark-blue text-center outline-none w-full font-semibold text-base flex items-center" name="custom-input-number" value={props.quantity}/>
 						<button className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none">
 							<span>+</span>
 						</button>

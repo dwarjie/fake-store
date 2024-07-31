@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Products from "../components/Products";
+import { checkProductExist } from "../utils/checkProductExist";
 
 const FILTER_VALUE = {
 	filter_category: "",
@@ -35,7 +36,19 @@ const Shop = () => {
 	}, [cart])
 	
 	const addProductToCart = (id, urlImage, name, price) => {
-		setCart([...cart, {id, urlImage, name, price, quantity: 1, date: date.slice(0, 10)}])
+		if (!checkProductExist(cart, id)) {
+			setCart([...cart, {id, urlImage, name, price, quantity: 1, date: date.slice(0, 10)}])
+		} else {
+			let updatedCart = cart.map((product) => {
+				console.log(product.id)
+				if (product.id === id) {
+					product.quantity = parseInt(product.quantity) + 1;
+				}
+
+				return product;
+			});
+			setCart(updatedCart)
+		}
 	};
 
 	const getAllProducts = async () => {

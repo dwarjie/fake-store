@@ -30,8 +30,8 @@ const getAllCart = () => {
     if (cartStorage) {
       return cartStorage;
     } else {
-      localStorage.setItem(Cart.STORAGE_NAME, []);
-      return false;
+      localStorage.setItem(Cart.STORAGE_NAME, JSON.stringify([]));
+      return [];
     }
   } catch (err) {
     throw new Error(err.message);
