@@ -15,6 +15,7 @@ const PersonalCart = () => {
 
 	const updateLocalStorage = () => {
 		try {
+			console.log(cart);
 			addToCart(cart);
 		} catch (err) {
 			setError(err.message);
@@ -74,6 +75,15 @@ const PersonalCart = () => {
 		updateLocalStorage();
 	};
 
+	const removeProduct = (id) => {
+		let updatedCart = cart.filter((product) => {
+			return product.id !== id;
+		});
+
+		setCart(updatedCart);
+		addToCart(updatedCart);
+	};
+
 	if (loading) return <Loading />;
 
 	if (error) return <Error message={error} />;
@@ -97,6 +107,7 @@ const PersonalCart = () => {
 									date={item.date}
 									addQuantity={addQuantity}
 									subQuantity={subQuantity}
+									removeProduct={removeProduct}
 								/>
 							))}
 					</div>

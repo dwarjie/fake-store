@@ -19,7 +19,10 @@ const CartProducts = (props) => {
 				</div>
 			</div>
 			<div className="grid grid-cols-2 text-white gap-2">
-				<button className="w-full py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover">
+				<button
+					className="w-full py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
+					onClick={() => props.removeProduct(props.id)}
+				>
 					<AiOutlineDelete size={"1.4em"} />
 					Remove
 				</button>
