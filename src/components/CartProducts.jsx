@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { AiOutlineDelete } from "react-icons/ai"
+import { AiOutlineDelete } from "react-icons/ai";
 
 const CartProducts = (props) => {
 	return (
@@ -19,19 +19,29 @@ const CartProducts = (props) => {
 				</div>
 			</div>
 			<div className="grid grid-cols-2 text-white gap-2">
-				<button
-					className="w-full py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
-				>
-					<AiOutlineDelete size={"1.4em"}/>
+				<button className="w-full py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover">
+					<AiOutlineDelete size={"1.4em"} />
 					Remove
 				</button>
 				<div className="custom-number-input h-full w-full">
 					<div className="flex flex-row h-10 w-full relative bg-transparent mt-1">
-						<button className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none">
+						<button
+							className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none"
+							onClick={() => props.subQuantity(props.id)}
+						>
 							<span>-</span>
 						</button>
-						<input type="number" className="text-dark-blue text-center outline-none w-full font-semibold text-base flex items-center" name="custom-input-number" value={props.quantity}/>
-						<button className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none">
+						<input
+							type="number"
+							className="text-dark-blue text-center outline-none w-full font-semibold text-base flex items-center"
+							name="custom-input-number"
+							value={props.quantity}
+							disabled
+						/>
+						<button
+							className="bg-gray-200 text-gray-600 h-full w-10 rounded-md cursor-pointer outline-none"
+							onClick={() => props.addQuantity(props.id)}
+						>
 							<span>+</span>
 						</button>
 					</div>

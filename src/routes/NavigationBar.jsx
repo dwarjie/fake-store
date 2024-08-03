@@ -70,7 +70,7 @@ const NavigationBar = () => {
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
 							</div>
 							<div className="mt-auto">
-								<Link to={"/fake-store/cart"}>
+								<Link to={"/fake-store/cart"} onClick={resetNav}>
 									<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white">
 										<RiShoppingCart2Line size={"1.4em"} />
 										View Cart

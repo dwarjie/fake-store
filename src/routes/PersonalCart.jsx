@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCart } from "../utils/apiCalls";
+import { getAllCart, addToCart } from "../utils/apiCalls";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import CartProducts from "../components/CartProducts";
@@ -13,15 +13,65 @@ const PersonalCart = () => {
 		getCart();
 	}, []);
 
+	const updateLocalStorage = () => {
+		try {
+			addToCart(cart);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
 	const getCart = () => {
 		try {
 			const response = getAllCart();
-			setCart(response)
+			setCart(response);
 		} catch (err) {
 			setError(err.message);
 		} finally {
 			setLoading(false);
 		}
+	};
+
+	const updateQuantity = (method, quantity) => {
+		let parsedQuantity = parseInt(quantity);
+		switch (method) {
+			case "subtract":
+				parsedQuantity--;
+				break;
+			case "add":
+				parsedQuantity++;
+				break;
+			default:
+				parsedQuantity++;
+		}
+
+		return parsedQuantity;
+	};
+
+	const addQuantity = (id) => {
+		let updatedCart = cart.map((product) => {
+			if (product.id === id) {
+				product.quantity = updateQuantity("add", product.quantity);
+			}
+
+			return product;
+		});
+
+		setCart(updatedCart);
+		updateLocalStorage();
+	};
+
+	const subQuantity = (id) => {
+		let updatedCart = cart.map((product) => {
+			if (product.id === id) {
+				product.quantity = updateQuantity("subtract", product.quantity);
+			}
+
+			return product;
+		});
+
+		setCart(updatedCart);
+		updateLocalStorage();
 	};
 
 	if (loading) return <Loading />;
@@ -45,6 +95,8 @@ const PersonalCart = () => {
 									price={item.price}
 									quantity={item.quantity}
 									date={item.date}
+									addQuantity={addQuantity}
+									subQuantity={subQuantity}
 								/>
 							))}
 					</div>
