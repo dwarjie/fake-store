@@ -3,6 +3,7 @@ import { getAllCart, addToCart } from "../utils/apiCalls";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import CartProducts from "../components/CartProducts";
+import EmptyCart from "../components/EmptyCart";
 
 const PersonalCart = () => {
 	const [cart, setCart] = useState([]);
@@ -63,13 +64,17 @@ const PersonalCart = () => {
 	};
 
 	const subQuantity = (id) => {
+		let zeroQuantity = false;
 		let updatedCart = cart.map((product) => {
 			if (product.id === id) {
 				product.quantity = updateQuantity("subtract", product.quantity);
+				if (product.quantity <= 0) zeroQuantity = true;
 			}
 
 			return product;
 		});
+
+		if (zeroQuantity) return removeProduct(id);
 
 		setCart(updatedCart);
 		updateLocalStorage();
@@ -87,6 +92,8 @@ const PersonalCart = () => {
 	if (loading) return <Loading />;
 
 	if (error) return <Error message={error} />;
+
+	if (cart.length <= 0) return <EmptyCart />;
 
 	return (
 		<>
