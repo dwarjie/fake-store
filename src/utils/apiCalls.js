@@ -50,6 +50,21 @@ const getCartItems = () => {
 	}
 };
 
+const getSubTotal = () => {
+	try {
+		const cartStorage =
+			JSON.parse(localStorage.getItem(Cart.STORAGE_NAME)) || [];
+		const sum = cartStorage.reduce(
+			(accum, item) => accum + item.price * item.quantity,
+			0
+		);
+
+		return sum;
+	} catch (err) {
+		throw new Error(err.message);
+	}
+};
+
 const fetchProduct = async () => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
@@ -58,4 +73,11 @@ const fetchProduct = async () => {
 	});
 };
 
-export { fetchCall, fetchProduct, addToCart, getAllCart, getCartItems };
+export {
+	fetchCall,
+	fetchProduct,
+	addToCart,
+	getAllCart,
+	getCartItems,
+	getSubTotal,
+};
