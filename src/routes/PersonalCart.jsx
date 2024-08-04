@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import { getAllCart, addToCart } from "../utils/apiCalls";
+import { getAllCart, addToCart, getCartItems } from "../utils/apiCalls";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import CartProducts from "../components/CartProducts";
 import EmptyCart from "../components/EmptyCart";
+import { useOutletContext } from "react-router-dom";
 
 const PersonalCart = () => {
+	const [cartItems, setCartItems] = useOutletContext();
 	const [cart, setCart] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
 		getCart();
+		setCartItems(getCartItems());
 	}, []);
 
 	const updateLocalStorage = () => {
 		try {
-			console.log(cart);
 			addToCart(cart);
+			setCartItems(getCartItems());
 		} catch (err) {
 			setError(err.message);
 		}
@@ -87,6 +90,7 @@ const PersonalCart = () => {
 
 		setCart(updatedCart);
 		addToCart(updatedCart);
+		setCartItems(getCartItems());
 	};
 
 	if (loading) return <Loading />;

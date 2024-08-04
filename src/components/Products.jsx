@@ -1,7 +1,7 @@
 import { RiShoppingCart2Line } from "react-icons/ri";
 import PropTypes from "prop-types";
 
-const Products = ({ id, UrlImage, name, price, addToCart}) => {	
+const Products = ({ id, UrlImage, name, price, addToCart, showAdd }) => {
 	return (
 		<div
 			className="max-w-full bg-white flex flex-col rounded-lg border border-gray-100 shadow-md"
@@ -22,17 +22,19 @@ const Products = ({ id, UrlImage, name, price, addToCart}) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex justify-between items-center px-2 pb-2 text-white">
-				<button
-					className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
-					onClick={() =>
-						addToCart(id, UrlImage, name, price)
-					}
-				>
-					<RiShoppingCart2Line size={"1.4em"} />
-					Add to Cart
-				</button>
-			</div>
+			{showAdd ? (
+				<div className="flex justify-between items-center px-2 pb-2 text-white">
+					<button
+						className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover"
+						onClick={() => addToCart(id, UrlImage, name, price)}
+					>
+						<RiShoppingCart2Line size={"1.4em"} />
+						Add to Cart
+					</button>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	);
 };
@@ -43,6 +45,7 @@ Products.propTypes = {
 	UrlImage: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
 	addToCart: PropTypes.func.isRequired,
+	showAdd: PropTypes.bool,
 };
 
 export default Products;

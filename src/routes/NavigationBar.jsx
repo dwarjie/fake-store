@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { RiShoppingCart2Line } from "react-icons/ri";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Outlet, Link } from "react-router-dom";
+import Cart from "../components/Cart";
 
 const NavigationBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [cartItems, setCartItems] = useState(0);
 
 	const openNav = () => {
 		setIsOpen(!isOpen);
@@ -25,18 +26,18 @@ const NavigationBar = () => {
 							<Link to={"/fake-store/shop"}>Shop</Link>
 							<Link>Contact Us</Link>
 							<Link>Services</Link>
-							<Link to={"/fake-store/cart"}>
-								<RiShoppingCart2Line size={"1.4em"} />
-							</Link>
 						</div>
-						<div className="z-50 md:hidden">
-							<button className="flex items-center">
-								{isOpen ? (
-									<IoMdClose className="p1" onClick={openNav} />
-								) : (
-									<IoMdMenu className="p1" onClick={openNav} />
-								)}
-							</button>
+						<div className="flex flex-row items-center gap-5">
+							<Cart resetNav={resetNav} items={cartItems} />
+							<div className="z-50 md:hidden">
+								<button className="flex items-center">
+									{isOpen ? (
+										<IoMdClose className="p1" onClick={openNav} />
+									) : (
+										<IoMdMenu className="p1" onClick={openNav} />
+									)}
+								</button>
+							</div>
 						</div>
 					</nav>
 					<div
@@ -69,20 +70,12 @@ const NavigationBar = () => {
 								<Link className="nav-item-hover">Services</Link>
 								<hr className="h-px mt-3 bg-gray-200 border-0" />
 							</div>
-							<div className="mt-auto">
-								<Link to={"/fake-store/cart"} onClick={resetNav}>
-									<button className="w-full px-5 py-2.5 font-medium bg-orange rounded-lg flex items-center justify-center gap-1 transition hover:bg-orange-hover text-white">
-										<RiShoppingCart2Line size={"1.4em"} />
-										View Cart
-									</button>
-								</Link>
-							</div>
 						</nav>
 					</div>
 				</div>
 			</div>
 			<div className="h-screen w-auto">
-				<Outlet />
+				<Outlet context={[cartItems, setCartItems]} />
 			</div>
 		</>
 	);

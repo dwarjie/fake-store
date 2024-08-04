@@ -38,6 +38,18 @@ const getAllCart = () => {
 	}
 };
 
+const getCartItems = () => {
+	try {
+		const cartStorage =
+			JSON.parse(localStorage.getItem(Cart.STORAGE_NAME)) || [];
+		const sum = cartStorage.reduce((accum, item) => accum + item.quantity, 0);
+
+		return sum;
+	} catch (err) {
+		throw new Error(err.message);
+	}
+};
+
 const fetchProduct = async () => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
@@ -46,4 +58,4 @@ const fetchProduct = async () => {
 	});
 };
 
-export { fetchCall, fetchProduct, addToCart, getAllCart };
+export { fetchCall, fetchProduct, addToCart, getAllCart, getCartItems };

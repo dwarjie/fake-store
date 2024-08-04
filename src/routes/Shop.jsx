@@ -1,55 +1,72 @@
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import { MdOutlineFilterAlt, MdOutlineFilterAltOff } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { addToCart, fetchCall, getAllCart } from "../utils/apiCalls";
+import {
+	addToCart,
+	fetchCall,
+	getAllCart,
+	getCartItems,
+} from "../utils/apiCalls";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Products from "../components/Products";
 import { checkProductExist } from "../utils/checkProductExist";
+import { useOutletContext } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const FILTER_VALUE = {
 	filter_category: "",
 };
 
 const Shop = () => {
+	const [cartItems, setCartItems] = useOutletContext();
 	const [filter, setFilter] = useState(FILTER_VALUE);
 	const [searchState, setSearchState] = useState(false);
 	const [search, setSearch] = useState("");
 	const [isFilter, setIsFilter] = useState(false);
 	const [products, setProducts] = useState(null);
-	const [cart, setCart] = useState(getAllCart())
+	const [cart, setCart] = useState(getAllCart());
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
-	const date = new Date().toJSON()
-	
+	const date = new Date().toJSON();
+
 	useEffect(() => {
 		getAllProducts();
+		setCartItems(getCartItems());
 	}, []);
 
 	useEffect(() => {
 		try {
-			addToCart(cart)
-		} catch(err) {
-			setError(err.message)
-		} 
-	}, [cart])
-	
+			addToCart(cart);
+			setCartItems(getCartItems());
+		} catch (err) {
+			setError(err.message);
+		}
+	}, [cart]);
+
 	const addProductToCart = (id, urlImage, name, price) => {
 		if (!checkProductExist(cart, id)) {
-			setCart([...cart, {id, urlImage, name, price, quantity: 1, date: date.slice(0, 10)}])
+			setCart([
+				...cart,
+				{ id, urlImage, name, price, quantity: 1, date: date.slice(0, 10) },
+			]);
 		} else {
 			let updatedCart = cart.map((product) => {
-				console.log(product.id)
+				console.log(product.id);
 				if (product.id === id) {
 					product.quantity = parseInt(product.quantity) + 1;
 				}
 
 				return product;
 			});
-			setCart(updatedCart)
+			setCart(updatedCart);
 		}
+
+		addNotify();
 	};
+
+	const addNotify = () => toast("Updated 🛒.");
 
 	const getAllProducts = async () => {
 		try {
@@ -138,8 +155,8 @@ const Shop = () => {
 			}
 		} else {
 			// I will use alert for now. Maybe? improve this later on
-			window.alert(`${search} does not exist!`)
-			setSearch("")
+			window.alert(`${search} does not exist!`);
+			setSearch("");
 		}
 	};
 
@@ -256,9 +273,11 @@ const Shop = () => {
 								UrlImage={product.image}
 								price={product.price}
 								addToCart={addProductToCart}
+								showAdd={true}
 							/>
 						))}
 				</div>
+				<Toaster position="bottom-left" />
 			</section>
 			<Footer />
 		</>

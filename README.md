@@ -12,9 +12,9 @@
 - [x] Create Shop Page
 - [x] Filter by Category
 - [x] Search products by name
-- [ ] Add to Cart Functionality
+- [x] Add to Cart Functionality
+- [ ] Show something when product is added to cart
 - [ ] Add some animations?
-- [ ] Hide side nav and filter when clicked outside?
 
 ### Tools/Language
 

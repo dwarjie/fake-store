@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
 	const [products, setProducts] = useState(null);
@@ -40,9 +41,11 @@ const LandingPage = () => {
 						Pick the best way to record everything! <br />
 						with the best store you trust.
 					</p>
-					<button className="px-5 py-2.5 font-medium bg-orange rounded-lg transition hover:bg-orange-hover">
-						Shop Now
-					</button>
+					<Link to={"/fake-store/shop"}>
+						<button className="px-5 py-2.5 font-medium bg-orange rounded-lg transition hover:bg-orange-hover">
+							Shop Now
+						</button>
+					</Link>
 				</div>
 			</section>
 			<section className="font-poppins w-full mt-10 mb-8 xl:w-[80%] xl:mx-auto">
@@ -58,6 +61,7 @@ const LandingPage = () => {
 								name={product.title}
 								UrlImage={product.image}
 								price={product.price}
+								showAdd={false}
 							/>
 						))}
 				</div>
