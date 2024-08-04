@@ -1,6 +1,6 @@
 # Shopii a Fake-Store
 
-> A simple responsive e-commerce as a personal project for The OdinProject.
+A simple responsive e-commerce as a personal project for The OdinProject. You may try it live [here](https://dwarjie.github.io/fake-store/)
 
 ### Screenshots
 
